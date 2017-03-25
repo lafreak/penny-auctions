@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-  before_action :authenticate_user!, :only => [:new, :create, :bid]
+  before_action :authenticate_user!, :only => [:new, :create, :bid, :edit, :delete]
 
   def index
     @auctions = Auction.all.order('finish_at ASC')
@@ -22,6 +22,28 @@ class AuctionsController < ApplicationController
 
   def show
     @auction = Auction.find(params[:id])
+  end
+
+  def edit
+    @auction = Auction.find(params[:id])
+  end
+
+  def save
+    @auction = Auction.find(params[:id])
+    @auction.update(auction_params)
+
+    flash[:success] = "Auction has been updated."
+
+    redirect_to auctions_edit_path(@auction)
+  end
+
+  def delete
+    @auction = Auction.find(params[:id])
+    @auction.destroy
+
+    flash[:success] = "Auction has been removed."
+
+    redirect_to auctions_index_path
   end
 
   def bid

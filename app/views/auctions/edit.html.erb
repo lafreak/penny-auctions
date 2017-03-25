@@ -1,0 +1,23 @@
+<h1>Edit auction</h1>
+
+<%= form_for @auction, url: { action: "save" } do |f| %>
+  <div class="form-group col-sm-12">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-sm-12">
+    <%= f.label :finish_at %><br />
+    <%= f.text_field :finish_at, class: "form-control", id: "datetimepicker4" %>
+  </div>
+
+  <div class="form-group col-sm-12">
+    <%= f.label :photo %><br />
+    <%= image_tag @auction.photo %><br />
+  </div>
+
+  <div class="form-group col-sm-12">
+    <%= f.file_field :photo %> <br />
+    <%= f.submit "Save", class: 'btn btn-default' %>
+  </div>
+<% end %>

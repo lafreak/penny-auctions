@@ -1,7 +1,7 @@
 class Auction < ApplicationRecord
   mount_uploader :photo, PhotoUploader
 
-  has_many :bids
+  has_many :bids, :dependent => :delete_all
 
   def top_offer
     return BigDecimal.new(0.01, 2) if bids.count == 0
