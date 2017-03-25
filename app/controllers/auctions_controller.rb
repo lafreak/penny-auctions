@@ -9,6 +9,13 @@ class AuctionsController < ApplicationController
 
   def create
     @auction = Auction.new(auction_params)
+
+    if @auction.save
+      flash[:success] = "Auction has been inserted."
+      redirect_to auctions_index_path
+    else
+      render 'new'
+    end
   end
 
   def show

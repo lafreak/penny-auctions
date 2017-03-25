@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'auctions/index'
   get 'auctions/new'
-  get 'auctions/create'
+  post 'auctions/create'
   get 'auctions/show/:id', to: 'auctions#show'
 
   devise_for :users
