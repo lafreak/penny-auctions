@@ -1,6 +1,13 @@
 <h1>Auction</h1>
 <h3><%= @auction.name %></h3>
 <p>
-  Price: <%= number_to_currency(@auction.price, :unit => '$') %> <br />
+  Price: <%= number_to_currency(@auction.top_offer, :unit => '$') %> <br />
   <%= image_tag @auction.photo %>
 </p>
+
+<h4>Last 10 bids</h4>
+<ul>
+  <% @auction.bids.order('price DESC').limit(10).each do |a| %>
+    <li><%= "#{a.price} - #{a.user.email}" %></li>
+  <% end %>
+</ul>

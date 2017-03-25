@@ -1,4 +1,6 @@
 class AuctionsController < ApplicationController
+  before_action :authenticate_user!, :only => [:new, :create, :bid]
+
   def index
     @auctions = Auction.all
   end
@@ -20,6 +22,14 @@ class AuctionsController < ApplicationController
 
   def show
     @auction = Auction.find(params[:id])
+  end
+
+  def bid
+    @auction = Auction.find(params[:id])
+
+    @auction.bids.create(user: current_user, price: @auction.top_offer + BigDecimal.new(0.01, 2))
+
+    redirect_to auctions_index_path
   end
 
   private
