@@ -1,12 +1,18 @@
 <h1>New auction</h1>
 
-<%= form_for @auction, url: { action: "create" }, html: { class: "" } do |f| %>
-  <div class="form-group">
+<%= form_for @auction, url: { action: "create" } do |f| %>
+  <div class="form-group col-sm-12">
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true, class: 'form-control' %>
   </div>
 
-  <%= f.file_field :photo %> <br />
+  <div class="form-group col-sm-12">
+    <%= f.label :finish_at %><br />
+    <%= f.text_field :finish_at, class: "form-control", id: "datetimepicker4" %>
+  </div>
 
-  <%= f.submit "Create", class: 'btn btn-default' %>
+  <div class="form-group col-sm-12">
+    <%= f.file_field :photo %> <br />
+    <%= f.submit "Create", class: 'btn btn-default' %>
+  </div>
 <% end %>

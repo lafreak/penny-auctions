@@ -2,7 +2,7 @@ class AuctionsController < ApplicationController
   before_action :authenticate_user!, :only => [:new, :create, :bid]
 
   def index
-    @auctions = Auction.all
+    @auctions = Auction.all.order('finish_at ASC')
   end
 
   def new
@@ -11,7 +11,7 @@ class AuctionsController < ApplicationController
 
   def create
     @auction = Auction.new(auction_params)
-
+    
     if @auction.save
       flash[:success] = "Auction has been inserted."
       redirect_to auctions_index_path
@@ -35,6 +35,6 @@ class AuctionsController < ApplicationController
   private
 
   def auction_params
-    params.require(:auction).permit(:name, :price, :photo)
+    params.require(:auction).permit(:name, :price, :photo, :finish_at)
   end
 end
