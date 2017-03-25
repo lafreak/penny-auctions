@@ -1,2 +1,6 @@
-<h1>Auctions#show</h1>
-<p>Find me in app/views/auctions/show.html.erb</p>
+<h1>Auction</h1>
+<h3><%= @auction.name %></h3>
+<p>
+  Price: <%= number_to_currency(@auction.price, :unit => '$') %> <br />
+  <%= image_tag @auction.photo %>
+</p>
