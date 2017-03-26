@@ -49,6 +49,15 @@ class AuctionsController < ApplicationController
   def bid
     @auction = Auction.find(params[:id])
 
+    seconds_left = (@auction.finish_at.to_f - DateTime.now.to_f).to_i
+
+    if seconds_left < 0
+      redirect_to auctions_index_path
+      return
+    elsif seconds_left < 15
+      @auction.update(finish_at: DateTime.now + 15.seconds)
+    end
+
     @auction.bids.create(user: current_user, price: @auction.top_offer + BigDecimal.new(0.01, 2))
 
     redirect_to auctions_index_path

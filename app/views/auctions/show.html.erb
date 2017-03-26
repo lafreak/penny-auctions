@@ -8,6 +8,6 @@
 <h4>Last 10 bids</h4>
 <ul>
   <% @auction.bids.order('price DESC').limit(10).each do |a| %>
-    <li><%= "#{a.price} - #{a.user.email}" %></li>
+    <li><%= "#{number_to_currency(a.price, :unit => '$')} - #{a.user.email}" %></li>
   <% end %>
 </ul>
