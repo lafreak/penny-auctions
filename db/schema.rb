@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326183027) do
+ActiveRecord::Schema.define(version: 20170326213826) do
 
   create_table "auctions", force: :cascade do |t|
     t.string   "name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170326183027) do
     t.boolean  "paid",                               default: false
     t.boolean  "shipped",                            default: false
     t.boolean  "special",                            default: false
+    t.boolean  "premium",                            default: false
     t.index ["user_id"], name: "index_auctions_on_user_id"
   end
 

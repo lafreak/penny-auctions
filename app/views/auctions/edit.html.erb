@@ -12,9 +12,16 @@
   </div>
 
   <div class="form-group col-sm-12">
+    <label>Type</label><br />
+    <%= f.select :premium, [['Non premium', false], ['Premium', true]], class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-sm-12">
     <%= f.label :photo %><br />
     <%= image_tag @auction.photo %><br />
   </div>
+
+  
 
   <div class="form-group col-sm-12">
     <%= f.file_field :photo %> <br />

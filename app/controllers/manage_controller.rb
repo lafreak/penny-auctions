@@ -1,4 +1,6 @@
 class ManageController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @users = User.all
     authorize @users
@@ -50,6 +52,6 @@ class ManageController < ApplicationController
   private
   
   def manage_params
-    params.require(:user).permit(:name, :email, :balance)
+    params.require(:user).permit(:name, :address, :email, :balance)
   end
 end

@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   patch 'manage/block/:id', to: 'manage#block', as: 'manage_block'
   patch 'manage/role/:id/:role', to: 'manage#role', as: 'manage_role'
 
+  get 'buypremium', to: 'static_pages#premium', as: 'show_premium'
+  patch 'buypremium', to: 'static_pages#buy', as: 'buy_premium'
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => 'registrations' }
   
   root 'static_pages#index'

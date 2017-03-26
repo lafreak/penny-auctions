@@ -35,7 +35,7 @@ class AuctionPolicy
   end
 
   def bid?
-    if auction.special
+    if auction.premium
       user.premium.to_f > DateTime.now.to_f && !user.blocked
     else
       !user.blocked
