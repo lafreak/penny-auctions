@@ -10,14 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326160108) do
+ActiveRecord::Schema.define(version: 20170326172454) do
 
   create_table "auctions", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
     t.string   "photo"
     t.datetime "finish_at"
+    t.integer  "user_id"
+    t.decimal  "top_price",  precision: 8, scale: 2, default: "0.01", null: false
+    t.boolean  "paid",                               default: false
+    t.boolean  "shipped",                            default: false
+    t.index ["user_id"], name: "index_auctions_on_user_id"
   end
 
   create_table "bids", force: :cascade do |t|
@@ -47,6 +52,7 @@ ActiveRecord::Schema.define(version: 20170326160108) do
     t.decimal  "balance",                precision: 8, scale: 2, default: "0.0", null: false
     t.string   "provider"
     t.string   "uid"
+    t.string   "address"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

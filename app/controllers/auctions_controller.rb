@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-  before_action :authenticate_user!, :only => [:new, :create, :bid, :edit, :delete]
+  before_action :authenticate_user!, :only => [:new, :create, :bid, :edit, :delete, :wins, :receive, :shipping, :ship]
 
   def index
     @auctions = Auction.all.order('finish_at ASC')
@@ -64,10 +64,54 @@ class AuctionsController < ApplicationController
       @auction.update(finish_at: DateTime.now + 15.seconds)
     end
 
-    @auction.bids.create(user: current_user, price: @auction.top_offer + BigDecimal.new(0.01, 2))
+    new_price = @auction.top_offer + BigDecimal.new(0.01, 2)
+
+    @auction.bids.create(user: current_user, price: new_price)
     current_user.update(balance: current_user.balance - BigDecimal.new(0.01, 2))
 
+    @auction.update(user: current_user, top_price: new_price)
+
     redirect_to auctions_index_path
+  end
+
+  def wins
+    @auctions = current_user.auctions.where('finish_at < ?', DateTime.now)
+  end
+
+  def pay
+    @auction = Auction.find(params[:id])
+
+    if current_user.balance < @auction.top_price
+      flash[:danger] = "Not enough balance."
+      redirect_to auctions_wins_path
+      return
+    elsif @auction.paid
+      redirect_to auctions_wins_path
+      return
+    end
+
+    flash[:success] = "Auction has been paid. Your item is on the way."
+    current_user.update(balance: current_user.balance - @auction.top_price)
+    @auction.update(paid: true)
+
+    redirect_to auctions_wins_path
+  end
+
+  def shipping
+    @auctions = Auction.where(paid: true)
+  end
+
+  def ship
+    @auction = Auction.find(params[:id])
+
+    if @auction.shipped
+      redirect_to auctions_shipping_path
+      return
+    end
+
+    flash[:success] = "Auction has been set as shipped."
+    @auction.update(shipped: true)
+    redirect_to auctions_shipping_path
   end
 
   private

@@ -1,0 +1,27 @@
+<h3> Your wins </h3>
+
+<table class="table table-stripped table-hover">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @auctions.each do |a| %>
+            <tr>
+                <td><%= a.name %></td>
+                <td><%= number_to_currency(a.top_price, :unit => '$') %></td>
+                <td>
+                  <% if !a.paid? %>
+                    <span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> 
+                    <%= link_to("Pay", auctions_pay_path(a), method: :patch) %>
+                  <% else %>
+                    <%= a.shipped ? "Sent" : "Paid, waiting for shipping" %>
+                  <% end %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

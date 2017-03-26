@@ -1,7 +1,10 @@
+<h3> Accounts </h3>
+
 <table class="table table-stripped table-hover">
     <thead>
         <tr>
             <th>Name</th>
+            <th>Address</th>
             <th>Email</th>
             <th>Balance</th>
             <th></th>
@@ -11,6 +14,7 @@
         <% @users.each do |u| %>
             <tr>
                 <td><%= u.name %></td>
+                <td><%= u.address %></td>
                 <td><%= u.email %></td>
                 <td><%= number_to_currency(u.balance, :unit => '$') %></td>
                 <td>

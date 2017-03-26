@@ -1,0 +1,29 @@
+<h3> Items ready for shipping </h3>
+
+<table class="table table-stripped table-hover">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Address</th>
+
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @auctions.each do |a| %>
+            <tr>
+                <td><%= a.name %></td>
+                <td><%= "#{a.user.name} #{a.user.address}" %></td>
+                <td>
+                  <% if a.shipped? %>
+                    Shipped
+                  <% else %>
+                    <span class="glyphicon glyphicon-gift" aria-hidden="true"></span> 
+                    <%= link_to("Set as shipped", auctions_ship_path(a), method: :patch) %>
+                  <% end %>
+
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

@@ -5,7 +5,8 @@ class User < ApplicationRecord
          :rememberable, :trackable, :validatable, 
          :omniauthable, :omniauth_providers => [:facebook]
 
-  has_many :bids, :dependent => :delete_all
+  has_many :bids
+  has_many :auctions
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

@@ -10,8 +10,8 @@
 	    			<%= image_tag a.photo %>
 	      		<div class="caption">
 							<h3> <%= link_to(a.name, auctions_show_path(a)) %> </h3>
-							<p> Current price: <%= number_to_currency(a.top_offer, :unit => '$') %></p>
-							<p> Last bidder: <%= a.bids.last.user.name if a.bids.count > 0 %> </p>
+							<p> Current price: <%= number_to_currency(a.top_price, :unit => '$') %></p>
+							<p> Last bidder: <%= a.user.name if !a.user.nil? %> </p>
 							<p class="countdown"><%= a.finish_at.strftime('%b %d, %Y %H:%M:%S') %></p>
 
 							<p>
