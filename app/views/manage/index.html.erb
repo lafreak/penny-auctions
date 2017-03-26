@@ -7,7 +7,9 @@
             <th>Address</th>
             <th>Email</th>
             <th>Balance</th>
+            <th>Block</th>
             <th></th>
+            <th>Role</th>
         </tr>
     </thead>
     <tbody>
@@ -17,14 +19,39 @@
                 <td><%= u.address %></td>
                 <td><%= u.email %></td>
                 <td><%= number_to_currency(u.balance, :unit => '$') %></td>
+                <td><%= "Blocked" if u.blocked %></td>
                 <td>
                   <%= link_to(manage_edit_path(u)) do %>
-                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit 
+                  <% end %>
+
+                  <%= link_to(manage_block_path(u), method: :patch) do %>
+                    <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Block 
                   <% end %>
 
                   <%= link_to(manage_delete_path(u), method: :delete, data: { confirm: 'Are you sure?' }) do %>
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
                   <% end %>
+                </td>
+
+                <td>
+                    <% if u.role == 0 %>
+                        Standard 
+                    <% else %>
+                        <%= link_to("Standard", manage_role_path(u, 0), method: :patch) %>
+                    <% end %>
+
+                    <% if u.role == 1 %>
+                        Moderator 
+                    <% else %>
+                        <%= link_to("Moderator", manage_role_path(u, 1), method: :patch) %>
+                    <% end %>
+
+                    <% if u.role == 2 %>
+                        Admin 
+                    <% else %>
+                        <%= link_to("Admin", manage_role_path(u, 2), method: :patch) %>
+                    <% end %>
                 </td>
             </tr>
         <% end %>

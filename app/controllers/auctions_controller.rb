@@ -3,14 +3,17 @@ class AuctionsController < ApplicationController
 
   def index
     @auctions = Auction.all.order('finish_at ASC')
+    authorize @auctions
   end
 
   def new
     @auction = Auction.new
+    authorize @auction
   end
 
   def create
     @auction = Auction.new(auction_params)
+    authorize @auction
     
     if @auction.save
       flash[:success] = "Auction has been inserted."
@@ -22,14 +25,17 @@ class AuctionsController < ApplicationController
 
   def show
     @auction = Auction.find(params[:id])
+    authorize @auction
   end
 
   def edit
     @auction = Auction.find(params[:id])
+    authorize @auction
   end
 
   def save
     @auction = Auction.find(params[:id])
+    authorize @auction
     @auction.update(auction_params)
 
     flash[:success] = "Auction has been updated."
@@ -39,6 +45,7 @@ class AuctionsController < ApplicationController
 
   def delete
     @auction = Auction.find(params[:id])
+    authorize @auction
     @auction.destroy
 
     flash[:success] = "Auction has been removed."
@@ -48,6 +55,7 @@ class AuctionsController < ApplicationController
 
   def bid
     @auction = Auction.find(params[:id])
+    authorize @auction
 
     if (current_user.balance < 0.01)
       flash[:danger] = "Your balance is not enough."
@@ -58,6 +66,7 @@ class AuctionsController < ApplicationController
     seconds_left = (@auction.finish_at.to_f - DateTime.now.to_f).to_i
 
     if seconds_left < 0
+      flash[:danger] = "Auction is finished, you cannot bid."
       redirect_to auctions_index_path
       return
     elsif seconds_left < 15
@@ -76,10 +85,12 @@ class AuctionsController < ApplicationController
 
   def wins
     @auctions = current_user.auctions.where('finish_at < ?', DateTime.now)
+    authorize @auctions
   end
 
   def pay
     @auction = Auction.find(params[:id])
+    authorize @auction
 
     if current_user.balance < @auction.top_price
       flash[:danger] = "Not enough balance."
@@ -99,10 +110,12 @@ class AuctionsController < ApplicationController
 
   def shipping
     @auctions = Auction.where(paid: true)
+    authorize @auctions
   end
 
   def ship
     @auction = Auction.find(params[:id])
+    authorize @auction
 
     if @auction.shipped
       redirect_to auctions_shipping_path

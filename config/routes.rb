@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'manage/edit/:id', to: 'manage#edit', as: 'manage_edit'
   put 'manage/save/:id', to: 'manage#save'
   delete 'manage/delete/:id', to: 'manage#delete', as: 'manage_delete'
+  patch 'manage/block/:id', to: 'manage#block', as: 'manage_block'
+  patch 'manage/role/:id/:role', to: 'manage#role', as: 'manage_role'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => 'registrations' }
   
