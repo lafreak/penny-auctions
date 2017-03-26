@@ -24,6 +24,6 @@ class ManageController < ApplicationController
   private
   
   def manage_params
-    params.require(:user).permit(:name, :surname, :email, :balance)
+    params.require(:user).permit(:name, :email, :balance)
   end
 end

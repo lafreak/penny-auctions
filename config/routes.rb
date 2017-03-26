@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   put 'manage/save/:id', to: 'manage#save'
   delete 'manage/delete/:id', to: 'manage#delete', as: 'manage_delete'
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   
   root 'static_pages#index'
 
