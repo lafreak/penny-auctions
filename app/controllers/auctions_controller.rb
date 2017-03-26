@@ -49,6 +49,12 @@ class AuctionsController < ApplicationController
   def bid
     @auction = Auction.find(params[:id])
 
+    if (current_user.balance < 0.01)
+      flash[:danger] = "Your balance is not enough."
+      redirect_to auctions_index_path
+      return
+    end
+
     seconds_left = (@auction.finish_at.to_f - DateTime.now.to_f).to_i
 
     if seconds_left < 0
@@ -59,6 +65,7 @@ class AuctionsController < ApplicationController
     end
 
     @auction.bids.create(user: current_user, price: @auction.top_offer + BigDecimal.new(0.01, 2))
+    current_user.update(balance: current_user.balance - BigDecimal.new(0.01, 2))
 
     redirect_to auctions_index_path
   end

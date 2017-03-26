@@ -1,0 +1,30 @@
+<table class="table table-stripped table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Balance</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @users.each do |u| %>
+            <tr>
+                <td><%= u.name %></td>
+                <td><%= u.surname %></td>
+                <td><%= u.email %></td>
+                <td><%= number_to_currency(u.balance, :unit => '$') %></td>
+                <td>
+                  <%= link_to(manage_edit_path(u)) do %>
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                  <% end %>
+
+                  <%= link_to(manage_delete_path(u), method: :delete, data: { confirm: 'Are you sure?' }) do %>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  <% end %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

@@ -1,0 +1,33 @@
+<h2>Edit</h2>
+
+<%= form_for(@user, url: { controller: 'manage', action: 'save' }, html: { method: :put }) do |f| %>
+  <div class="form-group">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :surname %><br />
+    <%= f.text_field :surname, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :balance %><br />
+    <div class="input-group">
+      <span class="input-group-addon">$</span>
+      <%= f.text_field :balance, class: "form-control" %>
+    </div>
+    
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update", class: "btn btn-default" %>
+  </div>
+<% end %>
+
+<%= link_to "Back", :back %>

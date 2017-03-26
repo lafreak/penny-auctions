@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   patch 'auctions/save/:id', to: 'auctions#save'
   delete 'auctions/delete/:id', to: 'auctions#delete', as: 'auctions_delete'
 
+  get 'manage/index'
+  get 'manage/edit/:id', to: 'manage#edit', as: 'manage_edit'
+  put 'manage/save/:id', to: 'manage#save'
+  delete 'manage/delete/:id', to: 'manage#delete', as: 'manage_delete'
+
   devise_for :users
   
   root 'static_pages#index'
