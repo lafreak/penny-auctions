@@ -25,11 +25,15 @@
             <li><%= link_to('Login', new_user_session_path)  %> </li>
             <li><%= link_to('Register', new_user_registration_path)  %> </li>
         <% else %>
+            <% if current_user.premium > DateTime.now %>
+              <li> <a href="#">Premium ends: <%= current_user.premium.to_date %></a> </li>
+            <% end %>
             <li> <a href="#">Balance: <%= number_to_currency(current_user.balance, :unit => '$') %></a> </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><%= link_to('My wins', auctions_wins_path) %></li>
+                <li><%= link_to('My history', auctions_history_path) %></li>
                 <li><%= link_to('Manage account', edit_user_registration_path) %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>

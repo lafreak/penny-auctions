@@ -46,8 +46,12 @@ class AuctionPolicy
     true
   end
 
-  def pay?
+  def history?
     true
+  end
+
+  def pay?
+    !auction.paid && auction.finish_at < DateTime.now
   end
 
   def shipping?

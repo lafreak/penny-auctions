@@ -1,0 +1,24 @@
+<% provide(:title, "History") %>
+
+<h3> Your history </h3>
+
+<table class="table table-stripped table-hover">
+    <thead>
+        <tr>
+            <th>Auction</th>
+            <th>Offered price</th>
+            <th>Cost</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @bids.each do |b| %>
+            <tr>
+                <td><%= b.auction.name %></td>
+                <td><%= number_to_currency(b.price, :unit => '$') %></td>
+                <td>-$0.01</td>
+                <td><%= b.created_at %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

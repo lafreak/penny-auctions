@@ -20,7 +20,7 @@ class StaticPagesController < ApplicationController
       return
     end
 
-    flash[:succeess] = "You have premium account now."
+    flash[:success] = "You have premium account now."
     current_user.update(premium: DateTime.now + 30.days, balance: current_user.balance - BigDecimal.new(10.00, 2))
     redirect_to auctions_index_path
   end

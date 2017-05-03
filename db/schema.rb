@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326213826) do
+ActiveRecord::Schema.define(version: 20170502184234) do
 
   create_table "auctions", force: :cascade do |t|
     t.string   "name"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20170326213826) do
     t.decimal  "top_price",  precision: 8, scale: 2, default: "0.01", null: false
     t.boolean  "paid",                               default: false
     t.boolean  "shipped",                            default: false
-    t.boolean  "special",                            default: false
     t.boolean  "premium",                            default: false
     t.index ["user_id"], name: "index_auctions_on_user_id"
   end
@@ -57,7 +56,7 @@ ActiveRecord::Schema.define(version: 20170326213826) do
     t.string   "address"
     t.boolean  "blocked",                                        default: false
     t.integer  "role",                                           default: 0
-    t.datetime "premium",                                        default: '2017-03-26 18:31:13'
+    t.datetime "premium",                                        default: '2000-01-01 00:00:00'
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

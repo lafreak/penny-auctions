@@ -5,6 +5,10 @@ class User < ApplicationRecord
          :rememberable, :trackable, :validatable, 
          :omniauthable, :omniauth_providers => [:facebook]
 
+  validates :name, presence: true
+
+  validates_numericality_of :balance, :greater_than_or_equal_to => 0
+
   has_many :bids
   has_many :auctions
 

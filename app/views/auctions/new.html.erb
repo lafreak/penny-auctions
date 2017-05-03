@@ -1,4 +1,14 @@
+<% provide(:title, "New auction") %>
+
 <h1>New auction</h1>
+
+<% if @auction.errors.any? %>
+<ul>
+  <% @auction.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
 
 <%= form_for @auction, url: { action: "create" } do |f| %>
   <div class="form-group col-sm-12">
@@ -13,7 +23,7 @@
 
   <div class="form-group col-sm-12">
     <label>Type</label><br />
-    <%= f.select :premium, [['Non premium', false], ['Premium', true]], class: 'form-control' %>
+    <%= f.select :premium, [['Non premium', false], ['Premium', true]], {}, { class: 'form-control' } %>
   </div>
 
   <div class="form-group col-sm-12">

@@ -14,10 +14,13 @@ class ManageController < ApplicationController
   def save
     @user = User.find(params[:id])
     authorize @user
-    @user.update(manage_params)
 
-    flash[:success] = "User has been saved."
-    redirect_to manage_index_path
+    if @user.update(manage_params)
+      flash[:success] = "User has been saved."
+      redirect_to manage_index_path
+    else
+      render 'edit'
+    end
   end
 
   def delete

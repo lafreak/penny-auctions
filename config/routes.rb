@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   patch 'auctions/save/:id', to: 'auctions#save'
   delete 'auctions/delete/:id', to: 'auctions#delete', as: 'auctions_delete'
   get 'auctions/wins'
+  get 'auctions/history'
   patch 'auctions/pay/:id', to: 'auctions#pay', as: 'auctions_pay'
   get 'auctions/shipping'
   patch 'auctions/ship/:id', to: 'auctions#ship', as: 'auctions_ship'

@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-  before_action :authenticate_user!, :only => [:new, :create, :bid, :edit, :delete, :wins, :receive, :shipping, :ship]
+  before_action :authenticate_user!, :only => [:new, :create, :bid, :edit, :save, :history, :pay, :delete, :wins, :shipping, :ship]
 
   def index
     @auctions = Auction.all.order('finish_at ASC')
@@ -36,11 +36,13 @@ class AuctionsController < ApplicationController
   def save
     @auction = Auction.find(params[:id])
     authorize @auction
-    @auction.update(auction_params)
 
-    flash[:success] = "Auction has been updated."
-
-    redirect_to auctions_edit_path(@auction)
+    if @auction.update(auction_params)
+      flash[:success] = "Auction has been updated."
+      redirect_to auctions_edit_path(@auction)
+    else
+      render 'edit'
+    end
   end
 
   def delete
@@ -88,15 +90,16 @@ class AuctionsController < ApplicationController
     authorize @auctions
   end
 
+  def history
+    @bids = current_user.bids.order('created_at DESC')
+  end
+
   def pay
-    @auction = Auction.find(params[:id])
+    @auction = current_user.auctions.find(params[:id])
     authorize @auction
 
     if current_user.balance < @auction.top_price
       flash[:danger] = "Not enough balance."
-      redirect_to auctions_wins_path
-      return
-    elsif @auction.paid
       redirect_to auctions_wins_path
       return
     end
@@ -130,6 +133,6 @@ class AuctionsController < ApplicationController
   private
 
   def auction_params
-    params.require(:auction).permit(:name, :price, :premium, :photo, :finish_at)
+    params.require(:auction).permit(:name, :premium, :photo, :finish_at)
   end
 end

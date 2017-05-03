@@ -1,11 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: 
-  auction: 
-  price: 9.99
+#one: {}
 
-two:
-  user: 
-  auction: 
-  price: 9.99
+#two: {}

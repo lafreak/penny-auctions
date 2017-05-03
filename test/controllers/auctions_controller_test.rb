@@ -1,24 +1,13 @@
 require 'test_helper'
 
 class AuctionsControllerTest < ActionDispatch::IntegrationTest
+  def setup
+    @base_title = "Penny Auctions"
+  end
+
   test "should get index" do
-    get auctions_index_url
+    get auctions_index_path
     assert_response :success
+    assert_select "title", "Auctions | #{@base_title}"
   end
-
-  test "should get new" do
-    get auctions_new_url
-    assert_response :success
-  end
-
-  test "should get create" do
-    get auctions_create_url
-    assert_response :success
-  end
-
-  test "should get show" do
-    get auctions_show_url
-    assert_response :success
-  end
-
 end
