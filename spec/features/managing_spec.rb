@@ -91,8 +91,13 @@ describe "the account managing process", :type => :feature do
       visit root_path
       click_link "Accounts"
       within(first(".role")) do
-        expect(find('a[text()="Moderator"]')).not_to be_nil
-        expect(find('a[text()="Standard"]')).to raise_error CapyBara::ElementNotFound
+        expect(page).to have_link 'Moderator'
+        expect(page).not_to have_link 'Standard'
+      end
+      first(:link, "Moderator").click
+      within(first(".role")) do
+        expect(page).not_to have_link 'Moderator'
+        expect(page).to have_link 'Standard'
       end
     end
   end
