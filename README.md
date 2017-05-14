@@ -5,7 +5,10 @@
 | 2.3.3 | 5.0.3 | dev: sqlite3, prod: pg | Bootstrap |
 
 # Aukcje groszowe
-TODO
+[Link do aplikacji na Heroku](https://penny-auctions.herokuapp.com/)  
+System aukcjny umożliwiający moderatorom wystawianie przedmiotów po cenie $0.01.
+Użytkownicy mają możliwość licytacji z krokiem o cent, wygrywa ostatnia licytująca osoba.
+Aplikacja pozwala moderatorom zarządzać wysyłką wygranych przedmiotów, a administratorom w pełni zarządzać kontami użytkowników.
 
 # Gemy
 - [devise](https://github.com/plataformatec/devise) (uwierzytelnianie)
