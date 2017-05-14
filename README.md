@@ -8,12 +8,12 @@
 TODO
 
 # Gemy
-- devise (uwierzytelnianie)
-- pundit (autoryzacja)
-- capybara (testy integracyjne)
-- carrierwave (upload zdjęć)
-- omniauth-facebook (uwierzytelnianie przez facebook)
-- bootstrap3-datetimepicker-rails (datetimepicker do boostrapa)
-- bootswatch-rails (custom layout do bootstrapa)
-- rspec-rails (RSpec do testów)
-- faker (generator danych do testów)
+- [devise](https://github.com/plataformatec/devise) (uwierzytelnianie)
+- [pundit](https://github.com/elabs/pundit) (autoryzacja)
+- [capybara](https://github.com/teamcapybara/capybara) (testy integracyjne)
+- [carrierwave](https://github.com/carrierwaveuploader/carrierwave) (upload zdjęć)
+- [omniauth-facebook](https://github.com/mkdynamic/omniauth-facebook) (uwierzytelnianie przez facebook)
+- [bootstrap3-datetimepicker-rails](https://github.com/TrevorS/bootstrap3-datetimepicker-rails) (datetimepicker do boostrapa)
+- [bootswatch-rails](https://github.com/maxim/bootswatch-rails) (custom layout do bootstrapa)
+- [rspec-rails](https://github.com/rspec/rspec-rails) (RSpec do testów)
+- [faker](https://github.com/stympy/faker) (generator danych do testów)
