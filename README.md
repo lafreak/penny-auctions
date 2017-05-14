@@ -1,24 +1,13 @@
-# README
+# Damian Kalinowski (egzamin)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Ruby | Rails | Baza danych | Layout |
+| ---- | ----- | ----------- | ------ |
+| 2.3.3 | 5.0.3 | dev: sqlite3, prod: pg | Bootstrap |
 
-Things you may want to cover:
+# Aukcje groszowe
+TODO
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Gemy
+- devise (uwierzytelnianie)
+- pundit (autoryzacja)
+- capybara (testy integracyjne)
