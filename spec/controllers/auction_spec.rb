@@ -196,7 +196,7 @@ RSpec.describe AuctionsController, :type => :controller do
       end
     end
 
-    describe "GET :bid" do
+    describe "GET #bid" do
       it "should throw error with invalid id" do
         expect { get :bid, params: { id: 10000 } }.to raise_error ActiveRecord::RecordNotFound
       end
