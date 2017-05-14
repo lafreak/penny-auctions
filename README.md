@@ -1,4 +1,4 @@
-# Damian Kalinowski (egzamin)
+# Damian Kalinowski, Rafał Lewandowski (egzamin)
 
 | Ruby | Rails | Baza danych | Layout |
 | ---- | ----- | ----------- | ------ |
@@ -6,7 +6,7 @@
 
 # Aukcje groszowe
 [Link do aplikacji na Heroku](https://penny-auctions.herokuapp.com/)  
-System aukcjny umożliwiający moderatorom wystawianie przedmiotów po cenie $0.01.
+System aukcjny umożliwiający moderatorom wystawiania przedmiotów po cenie $0.01.
 Użytkownicy mają możliwość licytacji z krokiem o cent, wygrywa ostatnia licytująca osoba.
 Aplikacja pozwala moderatorom zarządzać wysyłką wygranych przedmiotów, a administratorom w pełni zarządzać kontami użytkowników.
 
