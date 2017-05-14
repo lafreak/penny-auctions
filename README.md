@@ -15,3 +15,5 @@ TODO
 - omniauth-facebook (uwierzytelnianie przez facebook)
 - bootstrap3-datetimepicker-rails (datetimepicker do boostrapa)
 - bootswatch-rails (custom layout do bootstrapa)
+- rspec-rails (RSpec do testów)
+- faker (generator danych do testów)
