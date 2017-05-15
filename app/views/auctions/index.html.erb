@@ -9,7 +9,7 @@
 	<% @auctions.each do |a| %>
 		<div class="col-sm-6 col-md-4">
 				<div class="thumbnail">
-	    			<%= image_tag a.photo %>
+	    			<%= cl_image_tag a.photo %>
 	      		<div class="caption">
 							<h3> <%= link_to(a.name, auctions_show_path(a)) %> <% if a.premium %>(premium)<% end %></h3>
 							<p> Current price: <%= number_to_currency(a.top_price, :unit => '$') %></p>
