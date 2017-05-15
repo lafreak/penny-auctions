@@ -1,8 +1,8 @@
 # Damian Kalinowski, Rafał Lewandowski (egzamin)
 
-| Ruby | Rails | Baza danych | Layout |
-| ---- | ----- | ----------- | ------ |
-| 2.3.3 | 5.0.3 | dev: sqlite3, prod: pg | Bootstrap |
+| Ruby | Rails | Baza danych | Layout | Image CDN |
+| ---- | ----- | ----------- | ------ | --------- |
+| 2.3.3 | 5.0.3 | dev: sqlite3, prod: pg | Bootstrap | Cloudinary |
 
 # Aukcje groszowe
 [Link do aplikacji na Heroku](https://penny-auctions.herokuapp.com/)  
@@ -11,6 +11,7 @@ Użytkownicy mają możliwość licytacji z krokiem o cent, wygrywa ostatnia lic
 Aplikacja pozwala moderatorom zarządzać wysyłką wygranych przedmiotów, a administratorom w pełni zarządzać kontami użytkowników.
 
 # Gemy
+- [cloudinary](https://github.com/cloudinary/cloudinary_gem) (image CDN)
 - [devise](https://github.com/plataformatec/devise) (uwierzytelnianie)
 - [pundit](https://github.com/elabs/pundit) (autoryzacja)
 - [capybara](https://github.com/teamcapybara/capybara) (testy integracyjne)
